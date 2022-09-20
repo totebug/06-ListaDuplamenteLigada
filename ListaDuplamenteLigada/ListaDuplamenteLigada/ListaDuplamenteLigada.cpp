@@ -147,20 +147,42 @@ void inserirElemento()
 }
 
 
-// funções a serem implementadas no exericio
+// funÃ§Ãµes a serem implementadas no exericio
 void exibirReverso()
 {
 
+if (primeiro == NULL) {
+cout << "Lista vazia \n";
+	return;
+	}
+else {
+cout << "Elementos: \n";
+NO* aux = ultimo;
+while (aux != NULL) {
+cout << aux->valor << endl;
+aux = aux->ant;
+		}
+	}
 }
 
 void excluirPrimeiroElemento()
 {
-
+NO* paraExcluir = primeiro->prox;
+primeiro = paraExcluir;
+if (primeiro != NULL) {
+free(paraExcluir -> ant);
+paraExcluir->ant = NULL;
+	}
 }
 
 void excluirUltimoElemento()
 {
-
+NO* paraExcluir = ultimo->ant;
+ultimo = paraExcluir;
+if (ultimo != NULL) {
+free(paraExcluir->prox);
+paraExcluir->prox = NULL;
+	}
 }
 
 
