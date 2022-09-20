@@ -32,7 +32,7 @@ int main()
 void menu()
 {
 	int op = 0;
-	while (op != 7) {
+	while (op != 8) {
 		system("cls"); // somente no windows
 		cout << "Menu Lista Ligada";
 		cout << endl << endl;
@@ -54,7 +54,7 @@ void menu()
 			break;
 		case 2:inserirElemento();
 			break;
-		case 3: exibirQuantidadeElementos(); 
+		case 3: exibirQuantidadeElementos();
 			break;
 		case 4: exibirElementos();
 			break;
@@ -150,38 +150,73 @@ void inserirElemento()
 // funções a serem implementadas no exericio
 void exibirReverso()
 {
-
-if (primeiro == NULL) {
-cout << "Lista vazia \n";
-	return;
+	if (primeiro == NULL) {
+		cout << "Lista vazia" << endl;
+		return;
 	}
-else {
-cout << "Elementos: \n";
-NO* aux = ultimo;
-while (aux != NULL) {
-cout << aux->valor << endl;
-aux = aux->ant;
+	else {
+		cout << "Elementos: \n";
+		NO* aux = ultimo;
+		while (aux != NULL) {
+			cout << aux->valor << endl;
+			aux = aux->ant;
 		}
 	}
 }
 
 void excluirPrimeiroElemento()
 {
-NO* paraExcluir = primeiro->prox;
-primeiro = paraExcluir;
-if (primeiro != NULL) {
-free(paraExcluir -> ant);
-paraExcluir->ant = NULL;
+	NO* aux = primeiro;
+	NO* excluir = aux;
+
+	if (primeiro == NULL) {
+		cout << "Lista vazia" << endl;
+		return;
+	}
+	else {
+		//Excluir o valor caso ele seja unico na lista
+		if (primeiro->prox == NULL) {
+			free(excluir);
+			primeiro = NULL;
+			ultimo = NULL;
+			cout << "Elemento excluido" << endl;
+		}
+
+		//Excluir o valor em uma lista cheia
+		else {
+			primeiro = aux->prox;
+			free(excluir);
+			primeiro->ant = NULL;
+			cout << "Elemento excluido" << endl;
+
+		}
 	}
 }
 
 void excluirUltimoElemento()
 {
-NO* paraExcluir = ultimo->ant;
-ultimo = paraExcluir;
-if (ultimo != NULL) {
-free(paraExcluir->prox);
-paraExcluir->prox = NULL;
+	NO* aux = ultimo;
+	NO* excluir = aux;
+
+	if (primeiro == NULL) {
+		cout << "A lista esta vazia";
+		return;
+	}
+	else {
+		if (primeiro == ultimo) {
+			primeiro = NULL;
+			ultimo = NULL;
+			free(excluir);
+			cout << "Elemento excluido" << endl;
+
+		}
+		else {
+			ultimo = aux->ant;
+			free(excluir);
+			ultimo->prox = NULL;
+			cout << "Elemento excluido" << endl;
+
+		}
 	}
 }
 
